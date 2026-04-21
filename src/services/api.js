@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://ai-powered-resume-analyzer-builder.onrender.com/api",
+  baseURL: import.meta.env.VITE_API_BASE_URL || "https://ai-powered-resume-analyzer-builder.onrender.com/api",
 });
 
 export const fetchDashboardSummary = async () => {
@@ -28,9 +28,7 @@ export const atsCheck = async (formData) => {
 };
 
 export const fetchBuilderSuggestions = async (targetRole) => {
-  const response = await api.post("/builder/suggestions", {
-    targetRole,
-  });
+  const response = await api.post("/builder/suggestions", { targetRole });
   return response.data;
 };
 
